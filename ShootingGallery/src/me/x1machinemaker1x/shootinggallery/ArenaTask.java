@@ -68,8 +68,8 @@ public class ArenaTask extends BukkitRunnable {
 	public void run() {
 		if (counter >= ConfigManager.getInstance().getConfig().getInt("RoundTimeInSeconds")) {
 			int timeBeforeStart = counter - ConfigManager.getInstance().getConfig().getInt("RoundTimeInSeconds");
-			if (timeBeforeStart > 0) {
-				a.getPlayer().playSound(a.getPLoc(), Sound.ENTITY_HORSE_GALLOP, 3.0F, 0.5F);
+			if (timeBeforeStart > 1) {
+				a.getPlayer().playSound(a.getPLoc(), Sound.ENTITY_PLAYER_LEVELUP , 3.0F, 2.5F);
 			}
 			if (timeBeforeStart == 10) {
 				PacketUtils.sendTitle(a.getPlayer(), ChatColor.GOLD + "Shooting Gallery", 10, 80, 10);
@@ -110,7 +110,7 @@ public class ArenaTask extends BukkitRunnable {
 				PacketUtils.sendTitle(a.getPlayer(), ChatColor.RED + "1", 0, 10, 0);
 			} else if (timeBeforeStart == 0) {
 				PacketUtils.sendTitle(a.getPlayer(), ChatColor.GREEN + "Begin!", 0, 10, 0);
-				a.getPlayer().playSound(a.getPLoc(), Sound.ENTITY_CREEPER_DEATH, 3.0F, 0.5F);
+				a.getPlayer().playSound(a.getPLoc(), Sound.ITEM_TOTEM_USE, 3.0F, 2.0F);
 			}
 			counter -= 1;
 		} else if (counter > 0) {
