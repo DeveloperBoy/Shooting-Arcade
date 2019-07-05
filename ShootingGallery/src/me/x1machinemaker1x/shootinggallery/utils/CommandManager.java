@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import me.x1machinemaker1x.shootinggallery.commands.Create;
 import me.x1machinemaker1x.shootinggallery.commands.Enable;
 import me.x1machinemaker1x.shootinggallery.commands.Forcestop;
+import me.x1machinemaker1x.shootinggallery.commands.Highscore;
 import me.x1machinemaker1x.shootinggallery.commands.Leave;
 import me.x1machinemaker1x.shootinggallery.commands.Reload;
 import me.x1machinemaker1x.shootinggallery.commands.Remove;
@@ -29,6 +30,7 @@ public class CommandManager implements CommandExecutor {
 		this.commands.add(new Forcestop());
 		this.commands.add(new Reload());
 		this.commands.add(new Leave());
+		this.commands.add(new Highscore());
 	}
 
 	public boolean onCommand(CommandSender cs, Command cmd, String label, String[] args) {

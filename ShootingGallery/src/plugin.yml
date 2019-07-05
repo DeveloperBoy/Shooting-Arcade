@@ -1,6 +1,6 @@
 main: me.x1machinemaker1x.shootinggallery.Main
 name: ShootingGallery
-version: 0.2
+version: 0.3
 author: [X1machinemaker1X, SBDeveloper]
 depend: [WorldEdit, Vault]
 description: Shooting Practice!
@@ -9,3 +9,23 @@ commands:
   shootinggallery:
     default: op
     aliases: [sg, shootingg, sgallery]
+    
+permissions:
+  shootinggallery.create:
+    default: op
+  shootinggallery.enable:
+    default: op
+  shootinggallery.forcestop:
+    default: op
+  shootinggallery.highscore:
+    default: true
+  shootinggallery.leave:
+    default: true
+  shootinggallery.reload:
+    default: op
+  shootinggallery.remove:
+    default: op
+  shootinggallery.setspawn:
+    default: op
+  shootinggallery.use:
+    default: true 

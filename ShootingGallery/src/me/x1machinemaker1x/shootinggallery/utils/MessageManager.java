@@ -41,6 +41,7 @@ public class MessageManager {
 	private String addMoney;
 	private String moneyError;
 	private List<String> gameMessages;
+	private String highScores;
 
 	public static MessageManager getInstance() {
 		return instance;
@@ -144,6 +145,9 @@ public class MessageManager {
 		if (!conf.isSet("MoneyError")) {
 			conf.set("MoneyError", "&cAn error occurred: %cause%");
 		}
+		if (!conf.isSet("HighScores")) {
+			conf.set("HighScores", "%player%: %score%");
+		}
 		if (!conf.isSet("GameMessages")) {
 			List<String> gms = new ArrayList<String>();
 			gms.add("&aYou have joined a Shooting Gallery!");
@@ -188,6 +192,7 @@ public class MessageManager {
 		this.scoreMessage = conf.getString("ScoreMessage");
 		this.addMoney = conf.getString("AddMoney");
 		this.moneyError = conf.getString("MoneyError");
+		this.highScores = conf.getString("HighScores");
 		this.gameMessages = conf.getStringList("GameMessages");
 	}
 
@@ -313,6 +318,10 @@ public class MessageManager {
 
 	public String getMoneyError(String cause) {
 		return setupMessage(this.moneyError.replace("%cause%", cause));
+	}
+	
+	public String getHighScores(String player, String score) {
+		return setupMessage(this.highScores.replace("%player%", player).replace("%score%", score));
 	}
 
 	public String getGameMessages(int n) {
