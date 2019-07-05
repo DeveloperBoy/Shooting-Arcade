@@ -38,6 +38,7 @@ public class Main extends JavaPlugin {
 		CommandManager cm = new CommandManager();
 
 		cm.setup();
+		
 		ConfigManager.getInstance().onEnable(this);
 		ArenaManager.getInstance().onEnable(this);
 		SignManager.getInstance().onEnable();
