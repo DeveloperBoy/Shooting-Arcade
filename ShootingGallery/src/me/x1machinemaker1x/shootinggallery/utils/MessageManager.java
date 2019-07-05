@@ -42,6 +42,8 @@ public class MessageManager {
 	private String moneyError;
 	private List<String> gameMessages;
 	private String highScores;
+	private String selectedpointone;
+	private String selectedpointtwo;
 
 	public static MessageManager getInstance() {
 		return instance;
@@ -85,8 +87,11 @@ public class MessageManager {
 		if (!conf.isSet("noSelection")) {
 			conf.set("NoSelection", "&cYou must have a selected area!");
 		}
-		if (!conf.isSet("NotCuboid")) {
-			conf.set("NotCuboid", "&cYour selection must be a cuboid!");
+		if (!conf.isSet("SelectedPointOne")) {
+			conf.set("SelectedPointOne", "&aSelected point one!");
+		}
+		if (!conf.isSet("SelectedPointTwo")) {
+			conf.set("SelectedPointTwo", "&aSelected point two!");
 		}
 		if (!conf.isSet("NoSpawn")) {
 			conf.set("NoSpawn", "&cNo spawn point has been set for that arena!");
@@ -172,7 +177,8 @@ public class MessageManager {
 		this.alreadyCreated = conf.getString("AlreadyCreated");
 		this.notCreated = conf.getString("NotCreated");
 		this.noSelection = conf.getString("NoSelection");
-		this.notCuboid = conf.getString("NotCuboid");
+		this.selectedpointone = conf.getString("SelectedPointOne");
+		this.selectedpointtwo = conf.getString("SelectedPointTwo");
 		this.noSpawn = conf.getString("NoSpawn");
 		this.notInSelection = conf.getString("NotInSelection");
 		this.arenaInUse = conf.getString("ArenaInUse");
@@ -339,5 +345,13 @@ public class MessageManager {
 	public String setupMessage(String message) {
 		return ChatColor.GRAY + "[" + ChatColor.DARK_AQUA + "SG" + ChatColor.GRAY + "]"
 				+ ChatColor.translateAlternateColorCodes('&', message);
+	}
+
+	public String getSelectedpointone() {
+		return setupMessage(this.selectedpointone);
+	}
+
+	public String getSelectedpointtwo() {
+		return setupMessage(this.selectedpointtwo);
 	}
 }

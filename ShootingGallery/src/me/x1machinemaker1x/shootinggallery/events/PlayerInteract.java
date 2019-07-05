@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 
 import me.x1machinemaker1x.shootinggallery.Arena;
 import me.x1machinemaker1x.shootinggallery.utils.ArenaManager;
@@ -61,13 +62,22 @@ public class PlayerInteract implements Listener {
 			return;
 		}
 		
+		EquipmentSlot eslot = e.getHand();
+        if (!eslot.equals(EquipmentSlot.HAND)) {
+        	return;
+        }
+		
+		e.setCancelled(true);
+		
 		Location clickedloc = e.getClickedBlock().getLocation();
 		if (e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
 			//POS 1
 			SelectionManager.setLocOne(e.getPlayer(), clickedloc);
+			e.getPlayer().sendMessage(MessageManager.getInstance().getSelectedpointone());
 		} else if (e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			//POS 2
 			SelectionManager.setLocTwo(e.getPlayer(), clickedloc);
+			e.getPlayer().sendMessage(MessageManager.getInstance().getSelectedpointtwo());
 		}
 			
 	}
