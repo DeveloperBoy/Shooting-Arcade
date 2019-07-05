@@ -9,11 +9,12 @@ import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
-import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.Wool;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -24,9 +25,6 @@ import me.x1machinemaker1x.shootinggallery.utils.ConfigManager;
 import me.x1machinemaker1x.shootinggallery.utils.MessageManager;
 import me.x1machinemaker1x.shootinggallery.utils.PacketUtils;
 import me.x1machinemaker1x.shootinggallery.utils.ScoreManager;
-import net.minecraft.server.v1_12_R1.ItemStack;
-import net.minecraft.server.v1_12_R1.NBTTagCompound;
-import net.minecraft.server.v1_12_R1.SoundEffect;
 
 public class ArenaTask extends BukkitRunnable {
 	private int counter;
@@ -69,20 +67,15 @@ public class ArenaTask extends BukkitRunnable {
 		if (counter >= ConfigManager.getInstance().getConfig().getInt("RoundTimeInSeconds")) {
 			int timeBeforeStart = counter - ConfigManager.getInstance().getConfig().getInt("RoundTimeInSeconds");
 			if (timeBeforeStart > 0) {
-				PacketUtils.playSound(a.getPlayer(), (SoundEffect) SoundEffect.a.getId(490));
+				a.getPlayer().playSound(a.getPLoc(), Sound.ENTITY_HORSE_GALLOP, 3.0F, 0.5F);
 			}
 			if (timeBeforeStart == 10) {
-				PacketUtils.showTitle(a.getPlayer(), ChatColor.GOLD + "Shooting Gallery", 10, 80, 10);
-				PacketUtils.showSubTitle(a.getPlayer(), ChatColor.DARK_GRAY + "Round starts in 10 seconds!", 10,
+				PacketUtils.sendTitle(a.getPlayer(), ChatColor.GOLD + "Shooting Gallery", 10, 80, 10);
+				PacketUtils.sendSubTitle(a.getPlayer(), ChatColor.DARK_GRAY + "Round starts in 10 seconds!", 10,
 						80, 10);
 				a.getPlayer().sendMessage(MessageManager.getInstance().getGameMessages(0));
 			} else if (timeBeforeStart == 9) {
-				ItemStack cBow = CraftItemStack
-						.asNMSCopy(new org.bukkit.inventory.ItemStack(Material.BOW));
-				NBTTagCompound tag = new NBTTagCompound();
-				tag.setBoolean("Unbreakable", true);
-				cBow.setTag(tag);
-				org.bukkit.inventory.ItemStack bow = CraftItemStack.asCraftMirror(cBow);
+				ItemStack bow = new ItemStack(Material.BOW);
 				ItemMeta bowMeta = bow.getItemMeta();
 				bowMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&',
 						ConfigManager.getInstance().getConfig().getString("BowName")));
@@ -90,6 +83,7 @@ public class ArenaTask extends BukkitRunnable {
 				List<String> lore = new ArrayList<String>();
 				lore.add(ChatColor.YELLOW + "Use this bow to shoot the wool!");
 				bowMeta.setLore(lore);
+				bowMeta.setUnbreakable(true);
 				bow.setItemMeta(bowMeta);
 				a.getPlayer().getInventory().addItem(new org.bukkit.inventory.ItemStack[] { bow });
 				org.bukkit.inventory.ItemStack arrow = new org.bukkit.inventory.ItemStack(Material.ARROW, 1);
@@ -101,20 +95,20 @@ public class ArenaTask extends BukkitRunnable {
 			} else if (timeBeforeStart == 7) {
 				a.getPlayer().sendMessage(MessageManager.getInstance().getGameMessages(1));
 			} else if (timeBeforeStart == 5) {
-				PacketUtils.showTitle(a.getPlayer(), ChatColor.RED + "5", 2, 16, 2);
-				PacketUtils.showSubTitle(a.getPlayer(), ChatColor.DARK_GRAY + "Get ready..", 10, 1, 10);
+				PacketUtils.sendTitle(a.getPlayer(), ChatColor.RED + "5", 2, 16, 2);
+				PacketUtils.sendSubTitle(a.getPlayer(), ChatColor.DARK_GRAY + "Get ready..", 10, 1, 10);
 			} else if (timeBeforeStart == 4) {
-				PacketUtils.showTitle(a.getPlayer(), ChatColor.RED + "4", 0, 10, 0);
+				PacketUtils.sendTitle(a.getPlayer(), ChatColor.RED + "4", 0, 10, 0);
 				a.getPlayer().sendMessage(MessageManager.getInstance().getGameMessages(2));
 			} else if (timeBeforeStart == 3) {
-				PacketUtils.showTitle(a.getPlayer(), ChatColor.RED + "3", 0, 10, 0);
+				PacketUtils.sendTitle(a.getPlayer(), ChatColor.RED + "3", 0, 10, 0);
 			} else if (timeBeforeStart == 2) {
-				PacketUtils.showTitle(a.getPlayer(), ChatColor.RED + "2", 0, 10, 0);
+				PacketUtils.sendTitle(a.getPlayer(), ChatColor.RED + "2", 0, 10, 0);
 			} else if (timeBeforeStart == 1) {
-				PacketUtils.showTitle(a.getPlayer(), ChatColor.RED + "1", 0, 10, 0);
+				PacketUtils.sendTitle(a.getPlayer(), ChatColor.RED + "1", 0, 10, 0);
 			} else if (timeBeforeStart == 0) {
-				PacketUtils.showTitle(a.getPlayer(), ChatColor.GREEN + "Begin!", 0, 10, 0);
-				PacketUtils.playSound(a.getPlayer(), (SoundEffect) SoundEffect.a.getId(206));
+				PacketUtils.sendTitle(a.getPlayer(), ChatColor.GREEN + "Begin!", 0, 10, 0);
+				a.getPlayer().playSound(a.getPLoc(), Sound.ENTITY_CREEPER_DEATH, 3.0F, 0.5F);
 			}
 			counter -= 1;
 		} else if (counter > 0) {
