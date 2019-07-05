@@ -14,7 +14,7 @@ public class Setspawn extends SubCommand {
 			return;
 		}
 		Arena a = ArenaManager.getInstance().getArena(args[0]);
-		if ((!a.getSelection().contains(p.getLocation()))
+		if ((!a.getSelection().containsLocation(p.getLocation()))
 				&& (ConfigManager.getInstance().getConfig().getBoolean("SpawnPointMustBeInArena"))) {
 			p.sendMessage(MessageManager.getInstance().getNotInSelection());
 			return;

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -17,9 +18,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
-
 import me.x1machinemaker1x.shootinggallery.utils.ConfigManager;
+import me.x1machinemaker1x.shootinggallery.utils.Cuboid;
 import me.x1machinemaker1x.shootinggallery.utils.MessageManager;
 import me.x1machinemaker1x.shootinggallery.utils.PacketUtils;
 import me.x1machinemaker1x.shootinggallery.utils.ScoreManager;
@@ -38,27 +38,27 @@ public class ArenaTask extends BukkitRunnable {
 		coords = new HashMap<String, Integer>();
 		this.counter = counter;
 		this.a = a;
-		CuboidSelection sel = a.getSelection();
-		if (sel.getMinimumPoint().getBlockX() < sel.getMaximumPoint().getBlockX()) {
-			coords.put("minX", sel.getMinimumPoint().getBlockX() + 1);
-			coords.put("maxX", sel.getMaximumPoint().getBlockX() - 1);
+		Cuboid sel = a.getSelection();
+		if (sel.getLowerLocation().getBlockX() < sel.getUpperLocation().getBlockX()) {
+			coords.put("minX", sel.getLowerLocation().getBlockX() + 1);
+			coords.put("maxX", sel.getUpperLocation().getBlockX() - 1);
 		} else {
-			coords.put("minX", sel.getMaximumPoint().getBlockX() + 1);
-			coords.put("maxX", sel.getMinimumPoint().getBlockX() - 1);
+			coords.put("minX", sel.getUpperLocation().getBlockX() + 1);
+			coords.put("maxX", sel.getLowerLocation().getBlockX() - 1);
 		}
-		if (sel.getMinimumPoint().getBlockY() < sel.getMaximumPoint().getBlockY()) {
-			coords.put("minY", sel.getMinimumPoint().getBlockY() + 1);
-			coords.put("maxY", sel.getMaximumPoint().getBlockY() - 1);
+		if (sel.getLowerLocation().getBlockY() < sel.getUpperLocation().getBlockY()) {
+			coords.put("minY", sel.getLowerLocation().getBlockY() + 1);
+			coords.put("maxY", sel.getUpperLocation().getBlockY() - 1);
 		} else {
-			coords.put("minY", sel.getMaximumPoint().getBlockY() + 1);
-			coords.put("maxY", sel.getMinimumPoint().getBlockY() - 1);
+			coords.put("minY", sel.getUpperLocation().getBlockY() + 1);
+			coords.put("maxY", sel.getLowerLocation().getBlockY() - 1);
 		}
-		if (sel.getMinimumPoint().getBlockZ() < sel.getMaximumPoint().getBlockZ()) {
-			coords.put("minZ", sel.getMinimumPoint().getBlockZ() + 1);
-			coords.put("maxZ", sel.getMaximumPoint().getBlockZ() - 1);
+		if (sel.getLowerLocation().getBlockZ() < sel.getUpperLocation().getBlockZ()) {
+			coords.put("minZ", sel.getLowerLocation().getBlockZ() + 1);
+			coords.put("maxZ", sel.getUpperLocation().getBlockZ() - 1);
 		} else {
-			coords.put("minZ", sel.getMaximumPoint().getBlockZ() + 1);
-			coords.put("maxZ", sel.getMinimumPoint().getBlockZ() - 1);
+			coords.put("minZ", sel.getUpperLocation().getBlockZ() + 1);
+			coords.put("maxZ", sel.getLowerLocation().getBlockZ() - 1);
 		}
 	}
 
@@ -117,12 +117,12 @@ public class ArenaTask extends BukkitRunnable {
 				int X = r.nextInt(coords.get("maxX") + 1 - coords.get("minX")) + coords.get("minX");
 				int Y = r.nextInt(coords.get("maxY") + 1 - coords.get("minY")) + coords.get("minY");
 				int Z = r.nextInt(coords.get("maxZ") + 1 - coords.get("minZ")) + coords.get("minZ");
-				Block b = a.getSelection().getWorld().getBlockAt(X, Y, Z);
+				Block b = Bukkit.getWorld(a.getSelection().getWorld().getName()).getBlockAt(X, Y, Z);
 				while ((!b.getType().equals(Material.AIR)) || ((X == a.getSpawn().getBlockX()) && (Z == a.getSpawn().getBlockZ()))) {
 					X = r.nextInt(coords.get("maxX") + 1 - coords.get("minX")) + coords.get("minX");
 					Y = r.nextInt(coords.get("maxY") + 1 - coords.get("minY")) + coords.get("minY");
 					Z = r.nextInt(coords.get("maxZ") + 1 - coords.get("minZ")) + coords.get("minZ");
-					b = a.getSelection().getWorld().getBlockAt(X, Y, Z);
+					b = Bukkit.getWorld(a.getSelection().getWorld().getName()).getBlockAt(X, Y, Z);
 				}
 				BlockState bs = b.getState();
 				if (Math.random() < 0.2D) {

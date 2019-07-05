@@ -5,11 +5,11 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
+import me.x1machinemaker1x.shootinggallery.utils.Cuboid;
 
 public class Arena {
 	private String id;
-	private CuboidSelection selection = null;
+	private Cuboid selection = null;
 	private Location spawn = null;
 	private boolean enabled;
 	private boolean isInUse = false;
@@ -21,13 +21,13 @@ public class Arena {
 	private ArenaTask task;
 	private int score = 0;
 
-	public Arena(String id, CuboidSelection selection, boolean enabled) {
+	public Arena(String id, Cuboid selection, boolean enabled) {
 		this.id = id;
 		this.selection = selection;
 		this.enabled = enabled;
 	}
 
-	public Arena(String id, CuboidSelection selection, Location spawn, boolean enabled) {
+	public Arena(String id, Cuboid selection, Location spawn, boolean enabled) {
 		this.id = id;
 		this.selection = selection;
 		this.spawn = spawn;
@@ -38,7 +38,7 @@ public class Arena {
 		return this.id;
 	}
 
-	public CuboidSelection getSelection() {
+	public Cuboid getSelection() {
 		return this.selection;
 	}
 

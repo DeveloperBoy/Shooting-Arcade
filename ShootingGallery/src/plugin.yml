@@ -1,8 +1,8 @@
 main: me.x1machinemaker1x.shootinggallery.Main
 name: ShootingGallery
-version: 0.4
+version: 0.5
 author: [X1machinemaker1X, SBDeveloper]
-depend: [WorldEdit, Vault]
+depend: [Vault, WorldEdit]
 description: Shooting Practice!
 
 commands:

@@ -14,8 +14,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
-import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
-
 import me.x1machinemaker1x.shootinggallery.Arena;
 import me.x1machinemaker1x.shootinggallery.ArenaTask;
 
@@ -42,7 +40,7 @@ public class ArenaManager {
 						conf.getDouble(id + ".Location1.Y"), conf.getDouble(id + ".Location1.Z"));
 				Location loc2 = new Location(world, conf.getDouble(id + ".Location2.X"),
 						conf.getDouble(id + ".Location2.Y"), conf.getDouble(id + ".Location2.Z"));
-				CuboidSelection selection = new CuboidSelection(world, loc1, loc2);
+				Cuboid selection = new Cuboid(loc1, loc2);
 				ConfigurationSection spawnConf = conf.getConfigurationSection(id + ".Spawn");
 				if (spawnConf != null) {
 					Location spawn = new Location(world, spawnConf.getDouble("X"), spawnConf.getDouble("Y"),
@@ -64,12 +62,12 @@ public class ArenaManager {
 			for (Arena a : this.arenas) {
 				conf.set(a.getID() + ".Enabled", Boolean.valueOf(a.isEnabled()));
 				conf.set(a.getID() + ".World", a.getSelection().getWorld().getUID().toString());
-				conf.set(a.getID() + ".Location1.X", Integer.valueOf(a.getSelection().getMinimumPoint().getBlockX()));
-				conf.set(a.getID() + ".Location1.Y", Integer.valueOf(a.getSelection().getMinimumPoint().getBlockY()));
-				conf.set(a.getID() + ".Location1.Z", Integer.valueOf(a.getSelection().getMinimumPoint().getBlockZ()));
-				conf.set(a.getID() + ".Location2.X", Integer.valueOf(a.getSelection().getMaximumPoint().getBlockX()));
-				conf.set(a.getID() + ".Location2.Y", Integer.valueOf(a.getSelection().getMaximumPoint().getBlockY()));
-				conf.set(a.getID() + ".Location2.Z", Integer.valueOf(a.getSelection().getMaximumPoint().getBlockZ()));
+				conf.set(a.getID() + ".Location1.X", Integer.valueOf(a.getSelection().getLowerLocation().getBlockX()));
+				conf.set(a.getID() + ".Location1.Y", Integer.valueOf(a.getSelection().getLowerLocation().getBlockY()));
+				conf.set(a.getID() + ".Location1.Z", Integer.valueOf(a.getSelection().getLowerLocation().getBlockZ()));
+				conf.set(a.getID() + ".Location2.X", Integer.valueOf(a.getSelection().getUpperLocation().getBlockX()));
+				conf.set(a.getID() + ".Location2.Y", Integer.valueOf(a.getSelection().getUpperLocation().getBlockY()));
+				conf.set(a.getID() + ".Location2.Z", Integer.valueOf(a.getSelection().getUpperLocation().getBlockZ()));
 				if (a.getSpawn() != null) {
 					conf.set(a.getID() + ".Spawn.X", Double.valueOf(a.getSpawn().getBlockX() + 0.5D));
 					conf.set(a.getID() + ".Spawn.Y", Integer.valueOf(a.getSpawn().getBlockY()));
@@ -82,12 +80,12 @@ public class ArenaManager {
 		}
 	}
 
-	public void addArenaFromConfig(String id, CuboidSelection selection, Location spawn, boolean enabled) {
+	public void addArenaFromConfig(String id, Cuboid selection, Location spawn, boolean enabled) {
 		Arena a = new Arena(id, selection, spawn, enabled);
 		this.arenas.add(a);
 	}
 
-	public void addArena(String id, CuboidSelection selection, boolean enabled) {
+	public void addArena(String id, Cuboid selection, boolean enabled) {
 		Arena a = new Arena(id, selection, enabled);
 		this.arenas.add(a);
 		ConfigurationSection conf = ConfigManager.getInstance().getArenas()
@@ -97,12 +95,12 @@ public class ArenaManager {
 		}
 		conf.set("Enabled", Boolean.valueOf(a.isEnabled()));
 		conf.set("World", a.getSelection().getWorld().getUID().toString());
-		conf.set("Location1.X", Integer.valueOf(a.getSelection().getMinimumPoint().getBlockX()));
-		conf.set("Location1.Y", Integer.valueOf(a.getSelection().getMinimumPoint().getBlockY()));
-		conf.set("Location1.Z", Integer.valueOf(a.getSelection().getMinimumPoint().getBlockZ()));
-		conf.set("Location2.X", Integer.valueOf(a.getSelection().getMaximumPoint().getBlockX()));
-		conf.set("Location2.Y", Integer.valueOf(a.getSelection().getMaximumPoint().getBlockY()));
-		conf.set("Location2.Z", Integer.valueOf(a.getSelection().getMaximumPoint().getBlockZ()));
+		conf.set("Location1.X", Integer.valueOf(a.getSelection().getLowerLocation().getBlockX()));
+		conf.set("Location1.Y", Integer.valueOf(a.getSelection().getLowerLocation().getBlockY()));
+		conf.set("Location1.Z", Integer.valueOf(a.getSelection().getLowerLocation().getBlockZ()));
+		conf.set("Location2.X", Integer.valueOf(a.getSelection().getUpperLocation().getBlockX()));
+		conf.set("Location2.Y", Integer.valueOf(a.getSelection().getUpperLocation().getBlockY()));
+		conf.set("Location2.Z", Integer.valueOf(a.getSelection().getUpperLocation().getBlockZ()));
 		ConfigManager.getInstance().saveArenas();
 	}
 

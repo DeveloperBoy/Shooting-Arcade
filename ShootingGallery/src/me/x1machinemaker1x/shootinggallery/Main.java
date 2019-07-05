@@ -1,11 +1,8 @@
 package me.x1machinemaker1x.shootinggallery;
 
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 
 import me.x1machinemaker1x.shootinggallery.events.BlockBreak;
 import me.x1machinemaker1x.shootinggallery.events.InventoryClick;
@@ -24,17 +21,15 @@ import me.x1machinemaker1x.shootinggallery.utils.ScoreManager;
 import me.x1machinemaker1x.shootinggallery.utils.SignManager;
 
 public class Main extends JavaPlugin {
-	static Plugin p;
 
 	public void onEnable() {
-		p = Bukkit.getPluginManager().getPlugin("WorldEdit");
-		if (p == null) {
+		if (Bukkit.getPluginManager().getPlugin("WorldEdit") == null) {
 			Bukkit.getLogger().severe("ShootingGallery requires WorldEdit to be installed!");
 			Bukkit.getPluginManager().disablePlugin(this);
 			return;
 		}
 		Bukkit.getLogger().info("WorldEdit detected!");
-
+		
 		CommandManager cm = new CommandManager();
 
 		cm.setup();
@@ -67,12 +62,5 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new PlayerTeleport(), this);
 		pm.registerEvents(new PlayerDrop(), this);
 		pm.registerEvents(new InventoryClick(), this);
-	}
-
-	public static WorldEditPlugin getWorldEdit() {
-		if ((p instanceof WorldEditPlugin)) {
-			return (WorldEditPlugin) p;
-		}
-		return null;
 	}
 }
