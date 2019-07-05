@@ -23,12 +23,6 @@ import me.x1machinemaker1x.shootinggallery.utils.SignManager;
 public class Main extends JavaPlugin {
 
 	public void onEnable() {
-		if (Bukkit.getPluginManager().getPlugin("WorldEdit") == null) {
-			Bukkit.getLogger().severe("ShootingGallery requires WorldEdit to be installed!");
-			Bukkit.getPluginManager().disablePlugin(this);
-			return;
-		}
-		Bukkit.getLogger().info("WorldEdit detected!");
 		
 		CommandManager cm = new CommandManager();
 
