@@ -143,8 +143,8 @@ public class ArenaTask extends BukkitRunnable {
 			}
 			a.getPlayer().setLevel(counter);
 			PacketUtils.sendActionBar(a.getPlayer(),
-					ChatColor.BOLD + ChatColor.GOLD.toString() + "â�¯â�¯" + ChatColor.RESET + ChatColor.DARK_BLUE
-							+ " Score: " + a.getScore() + ChatColor.BOLD + ChatColor.GOLD.toString() + " â�®â�®");
+					ChatColor.BOLD + ChatColor.GOLD.toString() + "❯❯" + ChatColor.RESET + ChatColor.DARK_BLUE
+							+ " Score: " + a.getScore() + ChatColor.BOLD + ChatColor.GOLD.toString() + " ❮❮");
 			counter --;
 		} else {
 			Player p = a.getPlayer();
