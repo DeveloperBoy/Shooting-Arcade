@@ -1,19 +1,19 @@
 package me.x1machinemaker1x.shootinggallery.utils;
 
-import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-import net.minecraft.server.v1_11_R1.IChatBaseComponent;
-import net.minecraft.server.v1_11_R1.PacketPlayOutChat;
-import net.minecraft.server.v1_11_R1.PacketPlayOutNamedSoundEffect;
-import net.minecraft.server.v1_11_R1.PacketPlayOutTitle;
-import net.minecraft.server.v1_11_R1.SoundCategory;
-import net.minecraft.server.v1_11_R1.SoundEffect;
+import net.minecraft.server.v1_12_R1.IChatBaseComponent;
+import net.minecraft.server.v1_12_R1.PacketPlayOutChat;
+import net.minecraft.server.v1_12_R1.PacketPlayOutNamedSoundEffect;
+import net.minecraft.server.v1_12_R1.PacketPlayOutTitle;
+import net.minecraft.server.v1_12_R1.SoundCategory;
+import net.minecraft.server.v1_12_R1.SoundEffect;
 
 public class PacketUtils {
 	public static void sendActionBar(Player p, String message) {
 		IChatBaseComponent cbc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + message + "\"}");
-		PacketPlayOutChat ppoc = new PacketPlayOutChat(cbc, (byte) 2);
+		PacketPlayOutChat ppoc = new PacketPlayOutChat(cbc);
 		((CraftPlayer) p).getHandle().playerConnection.sendPacket(ppoc);
 	}
 

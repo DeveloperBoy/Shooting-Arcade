@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="/Users/jakepotrebic/Desktop/Bukkit 1.11.2/plugins/Vault.jar"/>
-	<classpathentry kind="lib" path="/Users/jakepotrebic/Desktop/Bukkit 1.11.2/plugins/worldedit-bukkit-6.1.7.2.jar"/>
-	<classpathentry kind="lib" path="/Users/jakepotrebic/Desktop/Bukkit 1.11.2/craftbukkit-1.11.2.jar"/>
+	<classpathentry kind="lib" path="E:/Testserver/plugins/Vault (6).jar"/>
+	<classpathentry kind="lib" path="E:/Testserver/plugins/worldedit-bukkit-6.1.9.jar"/>
+	<classpathentry kind="lib" path="E:/Testserver/spigot-1.12.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

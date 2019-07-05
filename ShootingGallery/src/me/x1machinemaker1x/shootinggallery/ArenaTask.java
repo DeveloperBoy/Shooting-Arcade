@@ -11,10 +11,9 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
-import org.bukkit.craftbukkit.v1_11_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.Wool;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -25,8 +24,9 @@ import me.x1machinemaker1x.shootinggallery.utils.ConfigManager;
 import me.x1machinemaker1x.shootinggallery.utils.MessageManager;
 import me.x1machinemaker1x.shootinggallery.utils.PacketUtils;
 import me.x1machinemaker1x.shootinggallery.utils.ScoreManager;
-import net.minecraft.server.v1_11_R1.NBTTagCompound;
-import net.minecraft.server.v1_11_R1.SoundEffect;
+import net.minecraft.server.v1_12_R1.ItemStack;
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
+import net.minecraft.server.v1_12_R1.SoundEffect;
 
 public class ArenaTask extends BukkitRunnable {
 	private int counter;
@@ -77,7 +77,7 @@ public class ArenaTask extends BukkitRunnable {
 						80, 10);
 				a.getPlayer().sendMessage(MessageManager.getInstance().getGameMessages(0));
 			} else if (timeBeforeStart == 9) {
-				net.minecraft.server.v1_11_R1.ItemStack cBow = CraftItemStack
+				ItemStack cBow = CraftItemStack
 						.asNMSCopy(new org.bukkit.inventory.ItemStack(Material.BOW));
 				NBTTagCompound tag = new NBTTagCompound();
 				tag.setBoolean("Unbreakable", true);
@@ -143,12 +143,12 @@ public class ArenaTask extends BukkitRunnable {
 			}
 			a.getPlayer().setLevel(counter);
 			PacketUtils.sendActionBar(a.getPlayer(),
-					ChatColor.BOLD + ChatColor.GOLD.toString() + "❯❯" + ChatColor.RESET + ChatColor.DARK_BLUE
-							+ " Score: " + a.getScore() + ChatColor.BOLD + ChatColor.GOLD.toString() + " ❮❮");
+					ChatColor.BOLD + ChatColor.GOLD.toString() + "â�¯â�¯" + ChatColor.RESET + ChatColor.DARK_BLUE
+							+ " Score: " + a.getScore() + ChatColor.BOLD + ChatColor.GOLD.toString() + " â�®â�®");
 			counter --;
 		} else {
 			Player p = a.getPlayer();
-			ItemStack[] items = a.getPInvContents();
+			org.bukkit.inventory.ItemStack[] items = a.getPInvContents();
 			Location loc = a.getPLoc();
 			loc.setYaw(loc.getYaw() + 180.0F);
 			int XPLevel = a.getXPLevel();
