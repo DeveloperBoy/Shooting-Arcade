@@ -12,6 +12,7 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import me.x1machinemaker1x.shootinggallery.Arena;
 import me.x1machinemaker1x.shootinggallery.SGBlock;
 import me.x1machinemaker1x.shootinggallery.utils.ArenaManager;
+import me.x1machinemaker1x.shootinggallery.utils.XMaterial;
 
 public class ProjectileHit implements Listener {
 	@EventHandler
@@ -28,7 +29,7 @@ public class ProjectileHit implements Listener {
 			return;
 		}
 		Arena a = ArenaManager.getInstance().getArena(p);
-		if (!e.getHitBlock().getType().equals(Material.WOOL)) {
+		if (!e.getHitBlock().getType().equals(XMaterial.RED_WOOL.parseMaterial()) && !e.getHitBlock().getType().equals(XMaterial.GREEN_WOOL.parseMaterial())) {
 			arrow.remove();
 			return;
 		}
