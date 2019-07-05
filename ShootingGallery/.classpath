@@ -5,6 +5,5 @@
 	<classpathentry kind="lib" path="E:/Testserver/plugins/Vault (6).jar"/>
 	<classpathentry kind="lib" path="E:/Testserver/plugins/worldedit-bukkit-6.1.9.jar"/>
 	<classpathentry kind="lib" path="E:/Testserver/spigot-1.12.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Stijn/Downloads/ReflectionHelper_v1.14.4-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
