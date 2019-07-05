@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -85,8 +84,8 @@ public class ArenaTask extends BukkitRunnable {
 				bowMeta.setLore(lore);
 				bowMeta.setUnbreakable(true);
 				bow.setItemMeta(bowMeta);
-				a.getPlayer().getInventory().addItem(new org.bukkit.inventory.ItemStack[] { bow });
-				org.bukkit.inventory.ItemStack arrow = new org.bukkit.inventory.ItemStack(Material.ARROW, 1);
+				a.getPlayer().getInventory().addItem(new ItemStack[] { bow });
+				org.bukkit.inventory.ItemStack arrow = new ItemStack(Material.ARROW, 1);
 				ItemMeta arrowMeta = arrow.getItemMeta();
 				arrowMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&',
 						ConfigManager.getInstance().getConfig().getString("ArrowName")));
@@ -117,12 +116,12 @@ public class ArenaTask extends BukkitRunnable {
 				int X = r.nextInt(coords.get("maxX") + 1 - coords.get("minX")) + coords.get("minX");
 				int Y = r.nextInt(coords.get("maxY") + 1 - coords.get("minY")) + coords.get("minY");
 				int Z = r.nextInt(coords.get("maxZ") + 1 - coords.get("minZ")) + coords.get("minZ");
-				Block b = Bukkit.getWorld(a.getSelection().getWorld().getName()).getBlockAt(X, Y, Z);
+				Block b = a.getSelection().getWorld().getBlockAt(X, Y, Z);
 				while ((!b.getType().equals(Material.AIR)) || ((X == a.getSpawn().getBlockX()) && (Z == a.getSpawn().getBlockZ()))) {
 					X = r.nextInt(coords.get("maxX") + 1 - coords.get("minX")) + coords.get("minX");
 					Y = r.nextInt(coords.get("maxY") + 1 - coords.get("minY")) + coords.get("minY");
 					Z = r.nextInt(coords.get("maxZ") + 1 - coords.get("minZ")) + coords.get("minZ");
-					b = Bukkit.getWorld(a.getSelection().getWorld().getName()).getBlockAt(X, Y, Z);
+					b = a.getSelection().getWorld().getBlockAt(X, Y, Z);
 				}
 				BlockState bs = b.getState();
 				if (Math.random() < 0.2D) {
