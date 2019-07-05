@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -15,6 +16,8 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.material.MaterialData;
+import org.bukkit.material.Wool;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.x1machinemaker1x.shootinggallery.utils.ConfigManager;
@@ -24,6 +27,7 @@ import me.x1machinemaker1x.shootinggallery.utils.PacketUtils;
 import me.x1machinemaker1x.shootinggallery.utils.ScoreManager;
 import me.x1machinemaker1x.shootinggallery.utils.XMaterial;
 
+@SuppressWarnings("deprecation")
 public class ArenaTask extends BukkitRunnable {
 	private int counter;
 	private Arena a;
@@ -61,7 +65,6 @@ public class ArenaTask extends BukkitRunnable {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
 	public void run() {
 		if (counter >= ConfigManager.getInstance().getConfig().getInt("RoundTimeInSeconds")) {
 			int timeBeforeStart = counter - ConfigManager.getInstance().getConfig().getInt("RoundTimeInSeconds");
@@ -123,15 +126,29 @@ public class ArenaTask extends BukkitRunnable {
 					Z = r.nextInt(coords.get("maxZ") + 1 - coords.get("minZ")) + coords.get("minZ");
 					b = a.getSelection().getWorld().getBlockAt(X, Y, Z);
 				}
-				BlockState bs = b.getState();
 				if (Math.random() < 0.2D) {
 					b.setType(XMaterial.RED_WOOL.parseMaterial());
-					b.getState().setRawData((byte) XMaterial.RED_WOOL.getData());
+					BlockState state = b.getState();
+					MaterialData data = state.getData();
+
+					if (data instanceof Wool) {
+					    Wool wool = (Wool) data;
+					    wool.setColor(DyeColor.RED);
+					    state.update();
+					}
+					blocks.add(new SGBlock(WoolType.RED, b.getLocation()));
 				} else {
 					b.setType(XMaterial.GREEN_WOOL.parseMaterial());
-					b.getState().setRawData((byte) XMaterial.GREEN_WOOL.getData());
+					BlockState state = b.getState();
+					MaterialData data = state.getData();
+
+					if (data instanceof Wool) {
+					    Wool wool = (Wool) data;
+					    wool.setColor(DyeColor.GREEN);
+					    state.update();
+					}
+					blocks.add(new SGBlock(WoolType.GREEN, b.getLocation()));
 				}
-				bs.update(true);
 			}
 			a.getPlayer().setLevel(counter);
 			PacketUtils.sendActionBar(a.getPlayer(),
