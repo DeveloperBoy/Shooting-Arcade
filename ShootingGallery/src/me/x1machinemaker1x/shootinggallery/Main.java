@@ -24,23 +24,35 @@ public class Main extends JavaPlugin {
 
 	public void onEnable() {
 		
+		//Load the commandmanager (for the commands)
 		CommandManager cm = new CommandManager();
-
 		cm.setup();
 		
+		//Load the configmanager (for the files)
 		ConfigManager.getInstance().onEnable(this);
+		
+		//Load the arenamanager (for the arenas)
 		ArenaManager.getInstance().onEnable(this);
+		
+		//Load the signmanager (for the join signs)
 		SignManager.getInstance().onEnable();
+		
+		//Load the scoremanager (for the scores and highscores)
 		ScoreManager.getInstance().onEnable();
+		
+		//Load the messagemanager (for the messages)
 		MessageManager.getInstance().onEnable();
 		MessageManager.getInstance().reloadMessages();
 
+		//Register all the events
 		registerEvents(Bukkit.getPluginManager());
 
+		//Set the command
 		getCommand("shootinggallery").setExecutor(cm);
 	}
 
 	public void onDisable() {
+		//Save all needed changes to the files
 		ArenaManager.getInstance().reloadArenasToConfig();
 		SignManager.getInstance().reloadSignsToConfig();
 		ScoreManager.getInstance().updateScoresInConfig();
