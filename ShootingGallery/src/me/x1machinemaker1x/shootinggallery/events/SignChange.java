@@ -6,9 +6,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.SignChangeEvent;
 
 import me.x1machinemaker1x.shootinggallery.Arena;
-import me.x1machinemaker1x.shootinggallery.utils.ArenaManager;
-import me.x1machinemaker1x.shootinggallery.utils.MessageManager;
-import me.x1machinemaker1x.shootinggallery.utils.SignManager;
+import me.x1machinemaker1x.shootinggallery.managers.ArenaManager;
+import me.x1machinemaker1x.shootinggallery.managers.MessageManager;
+import me.x1machinemaker1x.shootinggallery.managers.SignManager;
 
 public class SignChange implements Listener {
 	@EventHandler

@@ -20,11 +20,13 @@ import org.bukkit.material.MaterialData;
 import org.bukkit.material.Wool;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import me.x1machinemaker1x.shootinggallery.utils.ConfigManager;
+import com.connorlinfoot.titleapi.TitleAPI;
+
+import me.x1machinemaker1x.shootinggallery.managers.ConfigManager;
+import me.x1machinemaker1x.shootinggallery.managers.MessageManager;
+import me.x1machinemaker1x.shootinggallery.managers.ScoreManager;
 import me.x1machinemaker1x.shootinggallery.utils.Cuboid;
-import me.x1machinemaker1x.shootinggallery.utils.MessageManager;
 import me.x1machinemaker1x.shootinggallery.utils.PacketUtils;
-import me.x1machinemaker1x.shootinggallery.utils.ScoreManager;
 import me.x1machinemaker1x.shootinggallery.utils.XMaterial;
 
 @SuppressWarnings("deprecation")
@@ -72,9 +74,7 @@ public class ArenaTask extends BukkitRunnable {
 				a.getPlayer().playSound(a.getPLoc(), Sound.ENTITY_PLAYER_LEVELUP , 3.0F, 2.5F);
 			}
 			if (timeBeforeStart == 10) {
-				PacketUtils.sendTitle(a.getPlayer(), ChatColor.GOLD + "Shooting Gallery", 10, 80, 10);
-				PacketUtils.sendSubTitle(a.getPlayer(), ChatColor.DARK_GRAY + "Round starts in 10 seconds!", 10,
-						80, 10);
+				TitleAPI.sendTitle(a.getPlayer(), 10, 80, 10, ChatColor.GOLD + "Shooting Gallery", ChatColor.DARK_GRAY + "Round starts in 10 seconds!");
 				a.getPlayer().sendMessage(MessageManager.getInstance().getGameMessages(0));
 			} else if (timeBeforeStart == 9) {
 				ItemStack bow = new ItemStack(Material.BOW);
@@ -97,24 +97,22 @@ public class ArenaTask extends BukkitRunnable {
 			} else if (timeBeforeStart == 7) {
 				a.getPlayer().sendMessage(MessageManager.getInstance().getGameMessages(1));
 			} else if (timeBeforeStart == 5) {
-				PacketUtils.sendTitle(a.getPlayer(), ChatColor.RED + "5", 2, 16, 2);
-				PacketUtils.sendSubTitle(a.getPlayer(), ChatColor.DARK_GRAY + "Get ready..", 10, 1, 10);
+				TitleAPI.sendTitle(a.getPlayer(), 0, 10, 0, ChatColor.RED + "5", null);
 			} else if (timeBeforeStart == 4) {
-				PacketUtils.sendTitle(a.getPlayer(), ChatColor.RED + "4", 0, 10, 0);
+				TitleAPI.sendTitle(a.getPlayer(), 0, 10, 0, ChatColor.RED + "4", null);
 				a.getPlayer().sendMessage(MessageManager.getInstance().getGameMessages(2));
 			} else if (timeBeforeStart == 3) {
-				PacketUtils.sendTitle(a.getPlayer(), ChatColor.RED + "3", 0, 10, 0);
+				TitleAPI.sendTitle(a.getPlayer(), 0, 10, 0, ChatColor.RED + "3", null);
 			} else if (timeBeforeStart == 2) {
-				PacketUtils.sendTitle(a.getPlayer(), ChatColor.RED + "2", 0, 10, 0);
+				TitleAPI.sendTitle(a.getPlayer(), 0, 10, 0, ChatColor.RED + "2", null);
 			} else if (timeBeforeStart == 1) {
-				PacketUtils.sendTitle(a.getPlayer(), ChatColor.RED + "1", 0, 10, 0);
+				TitleAPI.sendTitle(a.getPlayer(), 0, 10, 0, ChatColor.RED + "1", null);
 			} else if (timeBeforeStart == 0) {
-				PacketUtils.sendTitle(a.getPlayer(), ChatColor.GREEN + "Begin!", 0, 10, 0);
+				TitleAPI.sendTitle(a.getPlayer(), 0, 10, 0, ChatColor.GREEN + "BEGIN!", null);
 				a.getPlayer().playSound(a.getPLoc(), Sound.ITEM_TOTEM_USE, 3.0F, 2.0F);
 			}
 			counter -= 1;
 		} else if (counter > 0) {
-			PacketUtils.cancelTitles(a.getPlayer());
 			if (blocks.size() < ConfigManager.getInstance().getConfig().getInt("MaxBlocksInArena")) {
 				int X = r.nextInt(coords.get("maxX") + 1 - coords.get("minX")) + coords.get("minX");
 				int Y = r.nextInt(coords.get("maxY") + 1 - coords.get("minY")) + coords.get("minY");

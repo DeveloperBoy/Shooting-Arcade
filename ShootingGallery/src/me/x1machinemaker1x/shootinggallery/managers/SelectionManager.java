@@ -1,10 +1,13 @@
-package me.x1machinemaker1x.shootinggallery.utils;
+package me.x1machinemaker1x.shootinggallery.managers;
 
 import java.util.HashMap;
 import java.util.UUID;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+
+import me.x1machinemaker1x.shootinggallery.utils.Cuboid;
+import me.x1machinemaker1x.shootinggallery.utils.Selection;
 
 public class SelectionManager {
 	private static HashMap<UUID, Selection> selectionmap = new HashMap<UUID, Selection>();

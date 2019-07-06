@@ -1,4 +1,4 @@
-package me.x1machinemaker1x.shootinggallery.utils;
+package me.x1machinemaker1x.shootinggallery.managers;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;

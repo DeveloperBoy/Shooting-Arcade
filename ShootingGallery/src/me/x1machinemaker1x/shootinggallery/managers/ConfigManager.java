@@ -1,4 +1,4 @@
-package me.x1machinemaker1x.shootinggallery.utils;
+package me.x1machinemaker1x.shootinggallery.managers;
 
 import java.io.File;
 import java.io.FileOutputStream;

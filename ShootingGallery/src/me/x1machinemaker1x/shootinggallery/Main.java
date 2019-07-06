@@ -13,12 +13,12 @@ import me.x1machinemaker1x.shootinggallery.events.PlayerMove;
 import me.x1machinemaker1x.shootinggallery.events.PlayerTeleport;
 import me.x1machinemaker1x.shootinggallery.events.ProjectileHit;
 import me.x1machinemaker1x.shootinggallery.events.SignChange;
-import me.x1machinemaker1x.shootinggallery.utils.ArenaManager;
-import me.x1machinemaker1x.shootinggallery.utils.CommandManager;
-import me.x1machinemaker1x.shootinggallery.utils.ConfigManager;
-import me.x1machinemaker1x.shootinggallery.utils.MessageManager;
-import me.x1machinemaker1x.shootinggallery.utils.ScoreManager;
-import me.x1machinemaker1x.shootinggallery.utils.SignManager;
+import me.x1machinemaker1x.shootinggallery.managers.ArenaManager;
+import me.x1machinemaker1x.shootinggallery.managers.CommandManager;
+import me.x1machinemaker1x.shootinggallery.managers.ConfigManager;
+import me.x1machinemaker1x.shootinggallery.managers.MessageManager;
+import me.x1machinemaker1x.shootinggallery.managers.ScoreManager;
+import me.x1machinemaker1x.shootinggallery.managers.SignManager;
 
 public class Main extends JavaPlugin {
 

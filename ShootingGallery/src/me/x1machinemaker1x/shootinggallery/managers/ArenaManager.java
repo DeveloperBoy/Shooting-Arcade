@@ -1,4 +1,4 @@
-package me.x1machinemaker1x.shootinggallery.utils;
+package me.x1machinemaker1x.shootinggallery.managers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,7 @@ import org.bukkit.plugin.Plugin;
 
 import me.x1machinemaker1x.shootinggallery.Arena;
 import me.x1machinemaker1x.shootinggallery.ArenaTask;
+import me.x1machinemaker1x.shootinggallery.utils.Cuboid;
 
 public class ArenaManager {
 	private static ArenaManager instance = new ArenaManager();

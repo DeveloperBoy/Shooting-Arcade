@@ -1,8 +1,9 @@
 package me.x1machinemaker1x.shootinggallery.commands;
 
 import me.x1machinemaker1x.shootinggallery.Arena;
-import me.x1machinemaker1x.shootinggallery.utils.ArenaManager;
-import me.x1machinemaker1x.shootinggallery.utils.MessageManager;
+import me.x1machinemaker1x.shootinggallery.managers.ArenaManager;
+import me.x1machinemaker1x.shootinggallery.managers.MessageManager;
+
 import org.bukkit.entity.Player;
 
 public class Remove extends SubCommand {

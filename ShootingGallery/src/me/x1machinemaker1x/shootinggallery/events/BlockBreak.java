@@ -5,8 +5,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
-import me.x1machinemaker1x.shootinggallery.utils.ArenaManager;
-import me.x1machinemaker1x.shootinggallery.utils.SignManager;
+import me.x1machinemaker1x.shootinggallery.managers.ArenaManager;
+import me.x1machinemaker1x.shootinggallery.managers.SignManager;
 
 public class BlockBreak implements Listener {
 	@EventHandler

@@ -1,7 +1,8 @@
 package me.x1machinemaker1x.shootinggallery.events;
 
 import me.x1machinemaker1x.shootinggallery.Arena;
-import me.x1machinemaker1x.shootinggallery.utils.ArenaManager;
+import me.x1machinemaker1x.shootinggallery.managers.ArenaManager;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;

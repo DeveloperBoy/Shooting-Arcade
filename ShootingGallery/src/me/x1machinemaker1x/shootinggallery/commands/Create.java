@@ -2,10 +2,10 @@ package me.x1machinemaker1x.shootinggallery.commands;
 
 import org.bukkit.entity.Player;
 
-import me.x1machinemaker1x.shootinggallery.utils.ArenaManager;
+import me.x1machinemaker1x.shootinggallery.managers.ArenaManager;
+import me.x1machinemaker1x.shootinggallery.managers.MessageManager;
+import me.x1machinemaker1x.shootinggallery.managers.SelectionManager;
 import me.x1machinemaker1x.shootinggallery.utils.Cuboid;
-import me.x1machinemaker1x.shootinggallery.utils.MessageManager;
-import me.x1machinemaker1x.shootinggallery.utils.SelectionManager;
 
 public class Create extends SubCommand {
 	

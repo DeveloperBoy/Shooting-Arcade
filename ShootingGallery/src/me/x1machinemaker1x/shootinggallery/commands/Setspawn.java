@@ -3,9 +3,9 @@ package me.x1machinemaker1x.shootinggallery.commands;
 import org.bukkit.entity.Player;
 
 import me.x1machinemaker1x.shootinggallery.Arena;
-import me.x1machinemaker1x.shootinggallery.utils.ArenaManager;
-import me.x1machinemaker1x.shootinggallery.utils.ConfigManager;
-import me.x1machinemaker1x.shootinggallery.utils.MessageManager;
+import me.x1machinemaker1x.shootinggallery.managers.ArenaManager;
+import me.x1machinemaker1x.shootinggallery.managers.ConfigManager;
+import me.x1machinemaker1x.shootinggallery.managers.MessageManager;
 
 public class Setspawn extends SubCommand {
 	public void onCommand(Player p, String[] args) {

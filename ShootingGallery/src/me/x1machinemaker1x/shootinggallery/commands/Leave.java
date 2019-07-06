@@ -1,9 +1,9 @@
 package me.x1machinemaker1x.shootinggallery.commands;
 
 import me.x1machinemaker1x.shootinggallery.Arena;
-import me.x1machinemaker1x.shootinggallery.utils.ArenaManager;
-import me.x1machinemaker1x.shootinggallery.utils.MessageManager;
-import me.x1machinemaker1x.shootinggallery.utils.PacketUtils;
+import me.x1machinemaker1x.shootinggallery.managers.ArenaManager;
+import me.x1machinemaker1x.shootinggallery.managers.MessageManager;
+
 import org.bukkit.entity.Player;
 
 public class Leave extends SubCommand {
@@ -14,7 +14,6 @@ public class Leave extends SubCommand {
 		}
 		Arena a = ArenaManager.getInstance().getArena(p);
 		ArenaManager.getInstance().forceLeaveArena(a);
-		PacketUtils.cancelTitles(p);
 		p.sendMessage(MessageManager.getInstance().getLeaveArena(a.getID()));
 	}
 

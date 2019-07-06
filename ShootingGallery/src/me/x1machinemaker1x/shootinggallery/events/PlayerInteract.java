@@ -9,10 +9,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
 import me.x1machinemaker1x.shootinggallery.Arena;
-import me.x1machinemaker1x.shootinggallery.utils.ArenaManager;
-import me.x1machinemaker1x.shootinggallery.utils.MessageManager;
-import me.x1machinemaker1x.shootinggallery.utils.SelectionManager;
-import me.x1machinemaker1x.shootinggallery.utils.SignManager;
+import me.x1machinemaker1x.shootinggallery.managers.ArenaManager;
+import me.x1machinemaker1x.shootinggallery.managers.MessageManager;
+import me.x1machinemaker1x.shootinggallery.managers.SelectionManager;
+import me.x1machinemaker1x.shootinggallery.managers.SignManager;
 import me.x1machinemaker1x.shootinggallery.utils.XMaterial;
 
 public class PlayerInteract implements Listener {

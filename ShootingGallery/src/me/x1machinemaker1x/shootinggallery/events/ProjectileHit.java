@@ -11,7 +11,7 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 
 import me.x1machinemaker1x.shootinggallery.Arena;
 import me.x1machinemaker1x.shootinggallery.SGBlock;
-import me.x1machinemaker1x.shootinggallery.utils.ArenaManager;
+import me.x1machinemaker1x.shootinggallery.managers.ArenaManager;
 import me.x1machinemaker1x.shootinggallery.utils.XMaterial;
 
 public class ProjectileHit implements Listener {

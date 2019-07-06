@@ -1,8 +1,9 @@
 package me.x1machinemaker1x.shootinggallery.commands;
 
-import me.x1machinemaker1x.shootinggallery.utils.ConfigManager;
-import me.x1machinemaker1x.shootinggallery.utils.MessageManager;
 import org.bukkit.entity.Player;
+
+import me.x1machinemaker1x.shootinggallery.managers.ConfigManager;
+import me.x1machinemaker1x.shootinggallery.managers.MessageManager;
 
 public class Reload extends SubCommand {
 	public void onCommand(Player p, String[] args) {
