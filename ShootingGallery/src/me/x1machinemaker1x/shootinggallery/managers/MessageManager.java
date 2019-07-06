@@ -79,7 +79,7 @@ public class MessageManager {
 			conf.set("ErrorMessage", "&cAn error has occurred: %cause%");
 		}
 		if (!conf.isSet("AlreadyCreated")) {
-			conf.set("AlreadyCreated", "&cThere is already a ShootingGallery arena with that ID!");
+			conf.set("AlreadyCreated", "&cThere is already a ShootingArcade arena with that ID!");
 		}
 		if (!conf.isSet("NotCreated")) {
 			conf.set("NotCreated", "&cThere is no arena with id %id%!");
@@ -115,7 +115,7 @@ public class MessageManager {
 			conf.set("ConfigReloaded", "&a%file% has been reloaded!");
 		}
 		if (!conf.isSet("ArenaCreated")) {
-			conf.set("ArenaCreated", "&aA ShootingGallery arena with an ID of %id% has been created!");
+			conf.set("ArenaCreated", "&aA ShootingArcade arena with an ID of %id% has been created!");
 		}
 		if (!conf.isSet("ArenaEnabled")) {
 			conf.set("ArenaEnabled", "&aArena %id% has been enabled!");
@@ -155,7 +155,7 @@ public class MessageManager {
 		}
 		if (!conf.isSet("GameMessages")) {
 			List<String> gms = new ArrayList<String>();
-			gms.add("&aYou have joined a Shooting Gallery!");
+			gms.add("&aYou have joined a Shooting Arena!");
 			gms.add("&aUse the bow and arrow to shoot at the wool blocks!");
 			gms.add("&2Green &awool is worth 1 point and &4Red &ais worth 5!");
 			conf.set("GameMessages", gms);

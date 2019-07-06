@@ -36,7 +36,7 @@ public class Setspawn extends SubCommand {
 	}
 
 	public String permission() {
-		return "shootinggallery.setspawn";
+		return "shootingarcade.setspawn";
 	}
 
 	public int argsReq() {
@@ -44,6 +44,6 @@ public class Setspawn extends SubCommand {
 	}
 
 	public String format() {
-		return "/sg setspawn <ID>";
+		return "/sa setspawn <ID>";
 	}
 }

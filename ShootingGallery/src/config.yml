@@ -19,5 +19,5 @@ CanLeaveArena: true
 CanWalkAroundInARound: false
 
 #The name of the bow and arrow
-BowName: '&6Shooting Gallery Gun'
-ArrowName: '&6Shooting Gallery Bullet'
+BowName: '&6Shooting Arcade Gun'
+ArrowName: '&6Shooting Arcade Bullet'

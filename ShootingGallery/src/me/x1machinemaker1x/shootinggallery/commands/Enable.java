@@ -34,7 +34,7 @@ public class Enable extends SubCommand {
 	}
 
 	public String permission() {
-		return "shootinggallery.enable";
+		return "shootingarcade.enable";
 	}
 
 	public int argsReq() {
@@ -42,6 +42,6 @@ public class Enable extends SubCommand {
 	}
 
 	public String format() {
-		return "/sg enable <ID>";
+		return "/sa enable <ID>";
 	}
 }

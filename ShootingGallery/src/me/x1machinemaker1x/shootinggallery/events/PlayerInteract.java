@@ -21,7 +21,7 @@ public class PlayerInteract implements Listener {
 		if (!e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			return;
 		}
-		if (!e.getPlayer().hasPermission("shootinggallery.use")) {
+		if (!e.getPlayer().hasPermission("shootingarcade.use")) {
 			return;
 		}
 		if (!(e.getClickedBlock().getState() instanceof Sign)) {
@@ -55,7 +55,7 @@ public class PlayerInteract implements Listener {
 		if (!e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && !e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
 			return;
 		}
-		if (!e.getPlayer().hasPermission("shootinggallery.create")) {
+		if (!e.getPlayer().hasPermission("shootingarcade.create")) {
 			return;
 		}
 		if (!(e.getPlayer().getInventory().getItemInMainHand().getType().equals(XMaterial.STICK.parseMaterial()))) {

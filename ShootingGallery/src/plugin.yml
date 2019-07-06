@@ -1,31 +1,30 @@
 main: me.x1machinemaker1x.shootinggallery.Main
-name: ShootingGallery
+name: ShootingArcade
 version: 0.6
 author: [X1machinemaker1X, SBDeveloper]
-depend: [TitleAPI]
 description: Shooting Practice!
 
 commands:
-  shootinggallery:
+  shootingarcade:
     default: op
-    aliases: [sg, shootingg, sgallery]
+    aliases: [sa]
     
 permissions:
-  shootinggallery.create:
+  shootingarcade.create:
     default: op
-  shootinggallery.enable:
+  shootingarcade.enable:
     default: op
-  shootinggallery.forcestop:
+  shootingarcade.forcestop:
     default: op
-  shootinggallery.highscore:
+  shootingarcade.highscore:
     default: true
-  shootinggallery.leave:
+  shootingarcade.leave:
     default: true
-  shootinggallery.reload:
+  shootingarcade.reload:
     default: op
-  shootinggallery.remove:
+  shootingarcade.remove:
     default: op
-  shootinggallery.setspawn:
+  shootingarcade.setspawn:
     default: op
-  shootinggallery.use:
+  shootingarcade.use:
     default: true

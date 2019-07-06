@@ -26,7 +26,7 @@ public class Remove extends SubCommand {
 	}
 
 	public String info() {
-		return "Removes a ShootingGallery arena";
+		return "Removes a ShootingArcade arena";
 	}
 
 	public String[] aliases() {
@@ -34,7 +34,7 @@ public class Remove extends SubCommand {
 	}
 
 	public String permission() {
-		return "shootinggallery.remove";
+		return "shootingarcade.remove";
 	}
 
 	public int argsReq() {
@@ -42,6 +42,6 @@ public class Remove extends SubCommand {
 	}
 
 	public String format() {
-		return "/sg remove <ID>";
+		return "/sa remove <ID>";
 	}
 }

@@ -51,7 +51,7 @@ public class Reload extends SubCommand {
 	}
 
 	public String permission() {
-		return "shootinggallery.reload";
+		return "shootingarcade.reload";
 	}
 
 	public int argsReq() {
@@ -59,6 +59,6 @@ public class Reload extends SubCommand {
 	}
 
 	public String format() {
-		return "/sg reload <config|arenas|signs|messages|scores|all>";
+		return "/sa reload <config|arenas|signs|messages|scores|all>";
 	}
 }

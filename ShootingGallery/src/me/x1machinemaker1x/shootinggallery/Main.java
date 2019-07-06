@@ -49,7 +49,7 @@ public class Main extends JavaPlugin {
 		registerEvents(Bukkit.getPluginManager());
 
 		//Set the command
-		getCommand("shootinggallery").setExecutor(cm);
+		getCommand("shootingarcade").setExecutor(cm);
 		
 		//Load metrics
 		Metrics metrics = new Metrics(this);

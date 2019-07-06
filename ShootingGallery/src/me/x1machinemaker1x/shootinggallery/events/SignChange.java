@@ -13,10 +13,10 @@ import me.x1machinemaker1x.shootinggallery.managers.SignManager;
 public class SignChange implements Listener {
 	@EventHandler
 	public void onSignChange(SignChangeEvent e) {
-		if (!e.getPlayer().hasPermission("shootinggallery.createsign")) {
+		if (!e.getPlayer().hasPermission("shootingarcade.createsign")) {
 			return;
 		}
-		if (!e.getLine(0).contains("[ShootingG]")) {
+		if (!e.getLine(0).contains("[ShootingA]")) {
 			return;
 		}
 		String id = e.getLine(1);
@@ -26,7 +26,7 @@ public class SignChange implements Listener {
 			return;
 		}
 		Arena a = ArenaManager.getInstance().getArena(id);
-		e.setLine(0, ChatColor.DARK_BLUE + "[ShootingG]");
+		e.setLine(0, ChatColor.DARK_BLUE + "[ShootingA]");
 		e.setLine(1, ChatColor.DARK_BLUE + "Arena: " + ChatColor.DARK_RED + a.getID());
 		SignManager.getInstance().addSign(e.getBlock().getLocation(), a);
 		e.getPlayer().sendMessage(MessageManager.getInstance().getSignCreated(id));

@@ -150,9 +150,9 @@ public class TitleActionBarUtil {
     }
 
     private static void failsafe(String message) {
-        Bukkit.getLogger().log(Level.WARNING, "[ShootingGallery] ActionBar and Titles System disabled! Something went wrong with: " + message);
-        Bukkit.getLogger().log(Level.WARNING, "[ShootingGallery] Report this to SBDeveloper");
-        Bukkit.getLogger().log(Level.WARNING, "[ShootingGallery] Needed Information: " + Bukkit.getName() + ", " + Bukkit.getVersion() + ", " + Bukkit.getBukkitVersion());
-        Bukkit.getLogger().log(Level.WARNING, "[ShootingGallery] [URL]https://github.com/DeveloperBoy/ShootingGallery[/URL]");
+        Bukkit.getLogger().log(Level.WARNING, "[ShootingArcade] ActionBar and Titles System disabled! Something went wrong with: " + message);
+        Bukkit.getLogger().log(Level.WARNING, "[ShootingArcade] Report this to SBDeveloper");
+        Bukkit.getLogger().log(Level.WARNING, "[ShootingArcade] Needed Information: " + Bukkit.getName() + ", " + Bukkit.getVersion() + ", " + Bukkit.getBukkitVersion());
+        Bukkit.getLogger().log(Level.WARNING, "[ShootingArcade] [URL]https://github.com/DeveloperBoy/Shooting-Arcade[/URL]");
     }
 }

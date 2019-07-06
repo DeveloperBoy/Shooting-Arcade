@@ -21,7 +21,7 @@ public class BlockBreak implements Listener {
 			SignManager.getInstance().removeSign(e.getBlock().getLocation());
 			return;
 		}
-		if (e.getPlayer().hasPermission("shootinggallery.createsign")) {
+		if (e.getPlayer().hasPermission("shootingarcade.createsign")) {
 			SignManager.getInstance().removeSign(e.getBlock().getLocation());
 			return;
 		}

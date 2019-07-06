@@ -30,7 +30,7 @@ public class Create extends SubCommand {
 	}
 
 	public String info() {
-		return "Creates an ShootingGallery arena";
+		return "Creates an ShootingArcade arena";
 	}
 
 	public String[] aliases() {
@@ -38,7 +38,7 @@ public class Create extends SubCommand {
 	}
 
 	public String permission() {
-		return "shootinggallery.create";
+		return "shootingarcade.create";
 	}
 
 	public int argsReq() {
@@ -46,6 +46,6 @@ public class Create extends SubCommand {
 	}
 
 	public String format() {
-		return "/sg create <ID>";
+		return "/sa create <ID>";
 	}
 }

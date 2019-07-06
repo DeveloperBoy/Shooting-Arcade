@@ -13,7 +13,7 @@ public class PlayerTeleport implements Listener {
 		if (ArenaManager.getInstance().getArena(e.getPlayer()) == null) {
 			return;
 		}
-		if (e.getPlayer().hasPermission("shootinggallery.teleport")) {
+		if (e.getPlayer().hasPermission("shootingarcade.teleport")) {
 			return;
 		}
 		e.setCancelled(true);

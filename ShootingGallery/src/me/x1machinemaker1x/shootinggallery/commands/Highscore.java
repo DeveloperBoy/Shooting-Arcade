@@ -44,7 +44,7 @@ import me.x1machinemaker1x.shootinggallery.managers.ScoreManager;
 	}
 
  	public String permission() {
-		return "shootinggallery.highscore";
+		return "shootingarcade.highscore";
 	}
 
  	public int argsReq() {
@@ -52,7 +52,7 @@ import me.x1machinemaker1x.shootinggallery.managers.ScoreManager;
 	}
 
  	public String format() {
-		return "/sg highscore <ID>";
+		return "/sa highscore <ID>";
 	}
 
  }

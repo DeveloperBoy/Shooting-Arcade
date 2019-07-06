@@ -34,7 +34,7 @@ public class Forcestop extends SubCommand {
 	}
 
 	public String permission() {
-		return "shootinggallery.forcestop";
+		return "shootingarcade.forcestop";
 	}
 
 	public int argsReq() {
@@ -42,6 +42,6 @@ public class Forcestop extends SubCommand {
 	}
 
 	public String format() {
-		return "/sg forcestop <ID>";
+		return "/sa forcestop <ID>";
 	}
 }

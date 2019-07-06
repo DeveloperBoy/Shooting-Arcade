@@ -30,7 +30,7 @@ public class Leave extends SubCommand {
 	}
 
 	public String permission() {
-		return "shootinggallery.leave";
+		return "shootingarcade.leave";
 	}
 
 	public int argsReq() {
@@ -38,6 +38,6 @@ public class Leave extends SubCommand {
 	}
 
 	public String format() {
-		return "/sg leave";
+		return "/sa leave";
 	}
 }
