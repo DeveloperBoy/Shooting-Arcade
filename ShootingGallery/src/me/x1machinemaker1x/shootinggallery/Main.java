@@ -19,6 +19,7 @@ import me.x1machinemaker1x.shootinggallery.managers.ConfigManager;
 import me.x1machinemaker1x.shootinggallery.managers.MessageManager;
 import me.x1machinemaker1x.shootinggallery.managers.ScoreManager;
 import me.x1machinemaker1x.shootinggallery.managers.SignManager;
+import me.x1machinemaker1x.shootinggallery.utils.Metrics;
 
 public class Main extends JavaPlugin {
 
@@ -49,6 +50,12 @@ public class Main extends JavaPlugin {
 
 		//Set the command
 		getCommand("shootinggallery").setExecutor(cm);
+		
+		//Load metrics
+		Metrics metrics = new Metrics(this);
+		
+		String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+		metrics.addCustomChart(new Metrics.SimplePie("nms_version", () -> version));
 	}
 
 	public void onDisable() {
