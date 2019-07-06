@@ -2,7 +2,7 @@ main: me.x1machinemaker1x.shootinggallery.Main
 name: ShootingGallery
 version: 0.6
 author: [X1machinemaker1X, SBDeveloper]
-depend: [Vault, TitleAPI]
+depend: [TitleAPI]
 description: Shooting Practice!
 
 commands:
@@ -28,4 +28,4 @@ permissions:
   shootinggallery.setspawn:
     default: op
   shootinggallery.use:
-    default: true 
+    default: true
