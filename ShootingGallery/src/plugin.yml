@@ -2,8 +2,8 @@ main: me.x1machinemaker1x.shootinggallery.Main
 name: ShootingGallery
 version: 0.6
 author: [X1machinemaker1X, SBDeveloper]
-depend: [TitleAPI]
 description: Shooting Practice!
+api-version: 1.13
 
 commands:
   shootinggallery:

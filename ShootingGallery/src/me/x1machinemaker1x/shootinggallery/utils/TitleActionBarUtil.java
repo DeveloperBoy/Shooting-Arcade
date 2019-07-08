@@ -61,6 +61,7 @@ public class TitleActionBarUtil {
      *
      * @param player
      * @param message
+     * @throws Exception
      */
     public static void sendActionBarMessage(Player player, String message) {
         try {
@@ -85,14 +86,6 @@ public class TitleActionBarUtil {
         }
     }
     
-    /**
-     * Sends the title 'text' to the player 'player' with a fadein time of 'fadein', a showtime of 'showtime' and a fadeout time of 'fadeout'
-     * @param p
-     * @param text
-     * @param fadein
-     * @param showtime
-     * @param fadeout
-     */
     public static void sendTitle(Player p, String text, int fadein, int showtime, int fadeout) {
     	try {
     	    Object enumTitle = getNMSClass("PacketPlayOutTitle").getDeclaredClasses()[0].getField("TITLE").get(null);
@@ -107,14 +100,6 @@ public class TitleActionBarUtil {
     	}
     }
     
-    /**
-     * Sends the subtitle 'text' to the player 'player' with a fadein time of 'fadein', a showtime of 'showtime' and a fadeout time of 'fadeout'
-     * @param p
-     * @param text
-     * @param fadein
-     * @param showtime
-     * @param fadeout
-     */
     public static void sendSubTitle(Player p, String text, int fadein, int showtime, int fadeout) {
     	try {
     		Object enumSubtitle = getNMSClass("PacketPlayOutTitle").getDeclaredClasses()[0].getField("SUBTITLE").get(null);

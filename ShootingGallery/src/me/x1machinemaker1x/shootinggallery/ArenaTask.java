@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.enchantments.Enchantment;
@@ -27,6 +27,7 @@ import me.x1machinemaker1x.shootinggallery.utils.Cuboid;
 import me.x1machinemaker1x.shootinggallery.utils.TitleActionBarUtil;
 import me.x1machinemaker1x.shootinggallery.utils.Util;
 import me.x1machinemaker1x.shootinggallery.utils.XMaterial;
+import me.x1machinemaker1x.shootinggallery.utils.XSound;
 
 @SuppressWarnings("deprecation")
 public class ArenaTask extends BukkitRunnable {
@@ -70,7 +71,7 @@ public class ArenaTask extends BukkitRunnable {
 		if (counter >= ConfigManager.getInstance().getConfig().getInt("RoundTimeInSeconds")) {
 			int timeBeforeStart = counter - ConfigManager.getInstance().getConfig().getInt("RoundTimeInSeconds");
 			if (timeBeforeStart > 1) {
-				a.getPlayer().playSound(a.getPLoc(), Sound.ENTITY_PLAYER_LEVELUP , 3.0F, 2.5F);
+				XSound.ENTITY_PLAYER_LEVELUP.playSound(a.getPlayer(), 3.0F, 2.5F);
 			}
 			if (timeBeforeStart == 10) {
 				TitleActionBarUtil.sendTitle(a.getPlayer(), "§6Shooting Gallery", 10, 80, 10);
@@ -110,7 +111,7 @@ public class ArenaTask extends BukkitRunnable {
 				TitleActionBarUtil.sendTitle(a.getPlayer(), "§c1", 0, 10, 0);
 			} else if (timeBeforeStart == 0) {
 				TitleActionBarUtil.sendTitle(a.getPlayer(), "§aBEGIN!", 0, 10, 0);
-				a.getPlayer().playSound(a.getPLoc(), Sound.ITEM_TOTEM_USE, 3.0F, 2.0F);
+				XSound.ITEM_TOTEM_USE.playSound(a.getPlayer(), 3.0F, 2.0F);
 			}
 			counter -= 1;
 		} else if (counter > 0) {
@@ -126,29 +127,39 @@ public class ArenaTask extends BukkitRunnable {
 					b = a.getSelection().getWorld().getBlockAt(X, Y, Z);
 				}
 				if (Math.random() < 0.2D) {
-					b.setType(XMaterial.RED_WOOL.parseMaterial());
+					Bukkit.getLogger().severe("New version: " + XMaterial.getVersion().name());
+					Bukkit.getLogger().severe("Red wool: " + XMaterial.RED_WOOL.parseMaterial().name());
+					Bukkit.getLogger().severe("Red wool data: " + XMaterial.RED_WOOL.parseMaterial().getId());
 					if (Util.is113orUp()) {
 						BlockState state = b.getState();
+						state.setType(XMaterial.RED_WOOL.parseMaterial());
+						state.update(true, true);
+					} else {
+						b.setType(XMaterial.RED_WOOL.parseMaterial());
+						
+						BlockState state = b.getState();
 						MaterialData data = state.getData();
-	
 						if (data instanceof Wool) {
 						    Wool wool = (Wool) data;
 						    wool.setColor(DyeColor.RED);
-						    state.update();
+						    state.update(true, true);
 						}
 					}
 					blocks.add(new SGBlock(WoolType.RED, b.getLocation()));
 				} else {
-					b.setType(XMaterial.GREEN_WOOL.parseMaterial());
-
 					if (Util.is113orUp()) {
 						BlockState state = b.getState();
+						state.setType(XMaterial.GREEN_WOOL.parseMaterial());
+						state.update(true, true);
+					} else {
+						b.setType(XMaterial.GREEN_WOOL.parseMaterial());
+						
+						BlockState state = b.getState();
 						MaterialData data = state.getData();
-	
 						if (data instanceof Wool) {
 						    Wool wool = (Wool) data;
 						    wool.setColor(DyeColor.GREEN);
-						    state.update();
+						    state.update(true, true);
 						}
 					}
 					blocks.add(new SGBlock(WoolType.GREEN, b.getLocation()));
