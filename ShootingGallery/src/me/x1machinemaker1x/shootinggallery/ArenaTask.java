@@ -25,6 +25,7 @@ import me.x1machinemaker1x.shootinggallery.managers.MessageManager;
 import me.x1machinemaker1x.shootinggallery.managers.ScoreManager;
 import me.x1machinemaker1x.shootinggallery.utils.Cuboid;
 import me.x1machinemaker1x.shootinggallery.utils.TitleActionBarUtil;
+import me.x1machinemaker1x.shootinggallery.utils.Util;
 import me.x1machinemaker1x.shootinggallery.utils.XMaterial;
 
 @SuppressWarnings("deprecation")
@@ -126,24 +127,29 @@ public class ArenaTask extends BukkitRunnable {
 				}
 				if (Math.random() < 0.2D) {
 					b.setType(XMaterial.RED_WOOL.parseMaterial());
-					BlockState state = b.getState();
-					MaterialData data = state.getData();
-
-					if (data instanceof Wool) {
-					    Wool wool = (Wool) data;
-					    wool.setColor(DyeColor.RED);
-					    state.update();
+					if (Util.is113orUp()) {
+						BlockState state = b.getState();
+						MaterialData data = state.getData();
+	
+						if (data instanceof Wool) {
+						    Wool wool = (Wool) data;
+						    wool.setColor(DyeColor.RED);
+						    state.update();
+						}
 					}
 					blocks.add(new SGBlock(WoolType.RED, b.getLocation()));
 				} else {
 					b.setType(XMaterial.GREEN_WOOL.parseMaterial());
-					BlockState state = b.getState();
-					MaterialData data = state.getData();
 
-					if (data instanceof Wool) {
-					    Wool wool = (Wool) data;
-					    wool.setColor(DyeColor.GREEN);
-					    state.update();
+					if (Util.is113orUp()) {
+						BlockState state = b.getState();
+						MaterialData data = state.getData();
+	
+						if (data instanceof Wool) {
+						    Wool wool = (Wool) data;
+						    wool.setColor(DyeColor.GREEN);
+						    state.update();
+						}
 					}
 					blocks.add(new SGBlock(WoolType.GREEN, b.getLocation()));
 				}
