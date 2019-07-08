@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
@@ -127,9 +126,6 @@ public class ArenaTask extends BukkitRunnable {
 					b = a.getSelection().getWorld().getBlockAt(X, Y, Z);
 				}
 				if (Math.random() < 0.2D) {
-					Bukkit.getLogger().severe("New version: " + XMaterial.getVersion().name());
-					Bukkit.getLogger().severe("Red wool: " + XMaterial.RED_WOOL.parseMaterial().name());
-					Bukkit.getLogger().severe("Red wool data: " + XMaterial.RED_WOOL.parseMaterial().getId());
 					if (Util.is113orUp()) {
 						BlockState state = b.getState();
 						state.setType(XMaterial.RED_WOOL.parseMaterial());
