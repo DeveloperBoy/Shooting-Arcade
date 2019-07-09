@@ -17,6 +17,7 @@ import org.bukkit.plugin.Plugin;
 import me.x1machinemaker1x.shootinggallery.Arena;
 import me.x1machinemaker1x.shootinggallery.ArenaTask;
 import me.x1machinemaker1x.shootinggallery.utils.Cuboid;
+import me.x1machinemaker1x.shootinggallery.utils.XMaterial;
 
 public class ArenaManager {
 	private static ArenaManager instance = new ArenaManager();
@@ -151,7 +152,9 @@ public class ArenaManager {
 					.intValue(); y <= ((Integer) a.getArenaTask().getCoords().get("maxY")).intValue(); y++) {
 				for (int z = ((Integer) a.getArenaTask().getCoords().get("minZ"))
 						.intValue(); z <= ((Integer) a.getArenaTask().getCoords().get("maxZ")).intValue(); z++) {
-					aPlayer.getWorld().getBlockAt(x, y, z).setType(Material.AIR);
+					if (aPlayer.getWorld().getBlockAt(x, y, z).getType() == XMaterial.RED_WOOL.parseMaterial() || aPlayer.getWorld().getBlockAt(x, y, z).getType() == XMaterial.GREEN_WOOL.parseMaterial()) {
+						aPlayer.getWorld().getBlockAt(x, y, z).setType(Material.AIR);
+					}
 				}
 			}
 		}
