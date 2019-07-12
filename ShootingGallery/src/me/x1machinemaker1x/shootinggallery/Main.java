@@ -1,6 +1,10 @@
 package me.x1machinemaker1x.shootinggallery;
 
 import org.bukkit.Bukkit;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -20,10 +24,15 @@ import me.x1machinemaker1x.shootinggallery.managers.MessageManager;
 import me.x1machinemaker1x.shootinggallery.managers.ScoreManager;
 import me.x1machinemaker1x.shootinggallery.managers.SignManager;
 import me.x1machinemaker1x.shootinggallery.utils.Metrics;
+import me.x1machinemaker1x.shootinggallery.utils.Updat3r;
 
 public class Main extends JavaPlugin {
+	
+	private static Plugin pl;
 
 	public void onEnable() {
+		
+		pl = this;
 		
 		//Load the commandmanager (for the commands)
 		CommandManager cm = new CommandManager();
@@ -56,6 +65,15 @@ public class Main extends JavaPlugin {
 		
 		String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
 		metrics.addCustomChart(new Metrics.SimplePie("nms_version", () -> version));
+		
+		//Load updat3r
+		Updat3r.getInstance().startTask();
+		Bukkit.getPluginManager().registerEvents(new Listener() {
+			@EventHandler
+			public void onJoin(PlayerJoinEvent e) {
+				Updat3r.getInstance().sendUpdateMessageLater(e.getPlayer());
+			}
+		}, this);
 	}
 
 	public void onDisable() {
@@ -75,5 +93,9 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new PlayerTeleport(), this);
 		pm.registerEvents(new PlayerDrop(), this);
 		pm.registerEvents(new InventoryClick(), this);
+	}
+	
+	public static Plugin getPlugin() {
+		return pl;
 	}
 }
