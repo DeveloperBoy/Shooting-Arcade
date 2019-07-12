@@ -19,6 +19,7 @@ import org.bukkit.material.MaterialData;
 import org.bukkit.material.Wool;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import me.x1machinemaker1x.shootinggallery.api.SGBlock;
 import me.x1machinemaker1x.shootinggallery.managers.ConfigManager;
 import me.x1machinemaker1x.shootinggallery.managers.MessageManager;
 import me.x1machinemaker1x.shootinggallery.managers.ScoreManager;
@@ -31,18 +32,18 @@ import me.x1machinemaker1x.shootinggallery.utils.XSound;
 @SuppressWarnings("deprecation")
 public class ArenaTask extends BukkitRunnable {
 	private int counter;
-	private Arena a;
+	private Arena arena;
 	private HashMap<String, Integer> coords;
-	private Random r;
+	private Random rand;
 	private List<SGBlock> blocks;
 
-	public ArenaTask(int counter, Arena a) {
+	public ArenaTask(int counter, Arena arena) {
 		blocks = new ArrayList<SGBlock>();
-		r = new Random();
+		rand = new Random();
 		coords = new HashMap<String, Integer>();
 		this.counter = counter;
-		this.a = a;
-		Cuboid sel = a.getSelection();
+		this.arena = arena;
+		Cuboid sel = arena.getSelection();
 		if (sel.getLowerLocation().getBlockX() < sel.getUpperLocation().getBlockX()) {
 			coords.put("minX", sel.getLowerLocation().getBlockX() + 1);
 			coords.put("maxX", sel.getUpperLocation().getBlockX() - 1);
@@ -70,12 +71,12 @@ public class ArenaTask extends BukkitRunnable {
 		if (counter >= ConfigManager.getInstance().getConfig().getInt("RoundTimeInSeconds")) {
 			int timeBeforeStart = counter - ConfigManager.getInstance().getConfig().getInt("RoundTimeInSeconds");
 			if (timeBeforeStart > 1) {
-				XSound.ENTITY_PLAYER_LEVELUP.playSound(a.getPlayer(), 3.0F, 2.5F);
+				XSound.ENTITY_PLAYER_LEVELUP.playSound(arena.getPlayer(), 3.0F, 2.5F);
 			}
 			if (timeBeforeStart == 10) {
-				TitleActionBarUtil.sendTitle(a.getPlayer(), "§6Shooting Gallery", 10, 80, 10);
-				TitleActionBarUtil.sendSubTitle(a.getPlayer(), "§8Round starts in 10 seconds!", 10, 80, 10);
-				a.getPlayer().sendMessage(MessageManager.getInstance().getGameMessages(0));
+				TitleActionBarUtil.sendTitle(arena.getPlayer(), "§6Shooting Gallery", 10, 80, 10);
+				TitleActionBarUtil.sendSubTitle(arena.getPlayer(), "§8Round starts in 10 seconds!", 10, 80, 10);
+				arena.getPlayer().sendMessage(MessageManager.getInstance().getGameMessages(0));
 			} else if (timeBeforeStart == 9) {
 				ItemStack bow = new ItemStack(Material.BOW);
 				ItemMeta bowMeta = bow.getItemMeta();
@@ -83,47 +84,50 @@ public class ArenaTask extends BukkitRunnable {
 						ConfigManager.getInstance().getConfig().getString("BowName")));
 				bowMeta.addEnchant(Enchantment.ARROW_INFINITE, 10, true);
 				List<String> lore = new ArrayList<String>();
+				/**
+				 * @todo Get lore from config
+				 */
 				lore.add(ChatColor.YELLOW + "Use this bow to shoot the wool!");
 				bowMeta.setLore(lore);
 				bowMeta.setUnbreakable(true);
 				bow.setItemMeta(bowMeta);
-				a.getPlayer().getInventory().addItem(new ItemStack[] { bow });
+				arena.getPlayer().getInventory().addItem(new ItemStack[] { bow });
 				org.bukkit.inventory.ItemStack arrow = new ItemStack(Material.ARROW, 1);
 				ItemMeta arrowMeta = arrow.getItemMeta();
 				arrowMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&',
 						ConfigManager.getInstance().getConfig().getString("ArrowName")));
 				arrow.setItemMeta(arrowMeta);
-				a.getPlayer().getInventory().addItem(new org.bukkit.inventory.ItemStack[] { arrow });
+				arena.getPlayer().getInventory().addItem(new org.bukkit.inventory.ItemStack[] { arrow });
 			} else if (timeBeforeStart == 7) {
-				a.getPlayer().sendMessage(MessageManager.getInstance().getGameMessages(1));
+				arena.getPlayer().sendMessage(MessageManager.getInstance().getGameMessages(1));
 			} else if (timeBeforeStart == 5) {
-				TitleActionBarUtil.sendTitle(a.getPlayer(), "§c5", 2, 16, 2);
-				TitleActionBarUtil.sendSubTitle(a.getPlayer(), "§8Get ready...", 10, 1, 10);
+				TitleActionBarUtil.sendTitle(arena.getPlayer(), "§c5", 2, 16, 2);
+				TitleActionBarUtil.sendSubTitle(arena.getPlayer(), "§8Get ready...", 10, 1, 10);
 			} else if (timeBeforeStart == 4) {
-				TitleActionBarUtil.sendTitle(a.getPlayer(), "§c4", 0, 10, 0);
-				a.getPlayer().sendMessage(MessageManager.getInstance().getGameMessages(2));
+				TitleActionBarUtil.sendTitle(arena.getPlayer(), "§c4", 0, 10, 0);
+				arena.getPlayer().sendMessage(MessageManager.getInstance().getGameMessages(2));
 			} else if (timeBeforeStart == 3) {
-				TitleActionBarUtil.sendTitle(a.getPlayer(), "§c3", 0, 10, 0);
+				TitleActionBarUtil.sendTitle(arena.getPlayer(), "§c3", 0, 10, 0);
 			} else if (timeBeforeStart == 2) {
-				TitleActionBarUtil.sendTitle(a.getPlayer(), "§c2", 0, 10, 0);
+				TitleActionBarUtil.sendTitle(arena.getPlayer(), "§c2", 0, 10, 0);
 			} else if (timeBeforeStart == 1) {
-				TitleActionBarUtil.sendTitle(a.getPlayer(), "§c1", 0, 10, 0);
+				TitleActionBarUtil.sendTitle(arena.getPlayer(), "§c1", 0, 10, 0);
 			} else if (timeBeforeStart == 0) {
-				TitleActionBarUtil.sendTitle(a.getPlayer(), "§aBEGIN!", 0, 10, 0);
-				XSound.ITEM_TOTEM_USE.playSound(a.getPlayer(), 3.0F, 2.0F);
+				TitleActionBarUtil.sendTitle(arena.getPlayer(), "§aBEGIN!", 0, 10, 0);
+				XSound.ITEM_TOTEM_USE.playSound(arena.getPlayer(), 3.0F, 2.0F);
 			}
 			counter -= 1;
 		} else if (counter > 0) {
 			if (blocks.size() < ConfigManager.getInstance().getConfig().getInt("MaxBlocksInArena")) {
-				int X = r.nextInt(coords.get("maxX") + 1 - coords.get("minX")) + coords.get("minX");
-				int Y = r.nextInt(coords.get("maxY") + 1 - coords.get("minY")) + coords.get("minY");
-				int Z = r.nextInt(coords.get("maxZ") + 1 - coords.get("minZ")) + coords.get("minZ");
-				Block b = a.getSelection().getWorld().getBlockAt(X, Y, Z);
-				while ((!b.getType().equals(Material.AIR)) || ((X == a.getSpawn().getBlockX()) && (Z == a.getSpawn().getBlockZ()))) {
-					X = r.nextInt(coords.get("maxX") + 1 - coords.get("minX")) + coords.get("minX");
-					Y = r.nextInt(coords.get("maxY") + 1 - coords.get("minY")) + coords.get("minY");
-					Z = r.nextInt(coords.get("maxZ") + 1 - coords.get("minZ")) + coords.get("minZ");
-					b = a.getSelection().getWorld().getBlockAt(X, Y, Z);
+				int X = rand.nextInt(coords.get("maxX") + 1 - coords.get("minX")) + coords.get("minX");
+				int Y = rand.nextInt(coords.get("maxY") + 1 - coords.get("minY")) + coords.get("minY");
+				int Z = rand.nextInt(coords.get("maxZ") + 1 - coords.get("minZ")) + coords.get("minZ");
+				Block b = arena.getSelection().getWorld().getBlockAt(X, Y, Z);
+				while ((!b.getType().equals(Material.AIR)) || ((X == arena.getSpawn().getBlockX()) && (Z == arena.getSpawn().getBlockZ()))) {
+					X = rand.nextInt(coords.get("maxX") + 1 - coords.get("minX")) + coords.get("minX");
+					Y = rand.nextInt(coords.get("maxY") + 1 - coords.get("minY")) + coords.get("minY");
+					Z = rand.nextInt(coords.get("maxZ") + 1 - coords.get("minZ")) + coords.get("minZ");
+					b = arena.getSelection().getWorld().getBlockAt(X, Y, Z);
 				}
 				if (Math.random() < 0.2D) {
 					if (Util.is113orUp()) {
@@ -141,7 +145,7 @@ public class ArenaTask extends BukkitRunnable {
 						    state.update(true, true);
 						}
 					}
-					blocks.add(new SGBlock(WoolType.RED, b.getLocation()));
+					blocks.add(new SGBlock(XMaterial.RED_WOOL, b.getLocation()));
 				} else {
 					if (Util.is113orUp()) {
 						BlockState state = b.getState();
@@ -158,27 +162,27 @@ public class ArenaTask extends BukkitRunnable {
 						    state.update(true, true);
 						}
 					}
-					blocks.add(new SGBlock(WoolType.GREEN, b.getLocation()));
+					blocks.add(new SGBlock(XMaterial.GREEN_WOOL, b.getLocation()));
 				}
 			}
-			a.getPlayer().setLevel(counter);
-			TitleActionBarUtil.sendActionBarMessage(a.getPlayer(),
+			arena.getPlayer().setLevel(counter);
+			TitleActionBarUtil.sendActionBarMessage(arena.getPlayer(),
 					ChatColor.BOLD + ChatColor.GOLD.toString() + "❯❯" + ChatColor.RESET + ChatColor.DARK_BLUE
-							+ " Score: " + a.getScore() + ChatColor.BOLD + ChatColor.GOLD.toString() + " ❮❮");
+							+ " Score: " + arena.getScore() + ChatColor.BOLD + ChatColor.GOLD.toString() + " ❮❮");
 			counter --;
 		} else {
-			Player p = a.getPlayer();
-			org.bukkit.inventory.ItemStack[] items = a.getPInvContents();
-			Location loc = a.getPLoc();
+			Player p = arena.getPlayer();
+			org.bukkit.inventory.ItemStack[] items = arena.getPInvContents();
+			Location loc = arena.getPLoc();
 			loc.setYaw(loc.getYaw() + 180.0F);
-			int XPLevel = a.getXPLevel();
-			float XPFloat = a.getXPFloat();
-			if (ScoreManager.getInstance().addScore(p, a.getScore())) {
-				p.sendMessage(MessageManager.getInstance().getNewHighscore(a.getScore()));
+			int XPLevel = arena.getXPLevel();
+			float XPFloat = arena.getXPFloat();
+			if (ScoreManager.getInstance().addScore(p, arena.getScore())) {
+				p.sendMessage(MessageManager.getInstance().getNewHighscore(arena.getScore()));
 			} else {
-				p.sendMessage(MessageManager.getInstance().getScoreMessage(a.getScore()));
+				p.sendMessage(MessageManager.getInstance().getScoreMessage(arena.getScore()));
 			}
-			a.stopArena();
+			arena.stopArena();
 			p.teleport(loc);
 			p.setExp(0.0F);
 			p.setLevel(0);
@@ -217,10 +221,10 @@ public class ArenaTask extends BukkitRunnable {
 	}
 
 	public void removeSGBlock(SGBlock b) {
-		if (b.getType().equals(WoolType.GREEN)) {
-			a.increaseScore(1);
+		if (b.getXMaterial().equals(XMaterial.GREEN_WOOL)) {
+			arena.increaseScore(1);
 		} else {
-			a.increaseScore(5);
+			arena.increaseScore(5);
 		}
 		blocks.remove(b);
 	}

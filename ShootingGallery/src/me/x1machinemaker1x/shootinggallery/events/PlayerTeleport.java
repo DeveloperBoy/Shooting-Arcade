@@ -5,6 +5,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
 import me.x1machinemaker1x.shootinggallery.managers.ArenaManager;
+import me.x1machinemaker1x.shootinggallery.managers.ConfigManager;
 import me.x1machinemaker1x.shootinggallery.managers.MessageManager;
 
 public class PlayerTeleport implements Listener {
@@ -16,6 +17,10 @@ public class PlayerTeleport implements Listener {
 		if (e.getPlayer().hasPermission("shootinggallery.teleport")) {
 			return;
 		}
+		if (ConfigManager.getInstance().getConfig().getBoolean("CanTeleportWhenInGame")) {
+			return;
+		}
+		
 		e.setCancelled(true);
 		e.getPlayer().sendMessage(MessageManager.getInstance().getNoTeleport());
 	}

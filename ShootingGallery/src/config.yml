@@ -1,23 +1,39 @@
-#You can choose between RANDOM and CUSTOM. 
-#With RANDOM it will place random wool blocks, where you have to shoot at. 
-#With CUSTOM it will use the already placed wool blocks (which are placed by the user)
-GameType: "RANDOM"
+GameType: RANDOM
 
-#The time of one round
 RoundTimeInSeconds: 60
 
-#The maximum of blocks in an arena. Only needed for the RANDOM gametype.
 MaxBlocksInArena: 10
 
-#Does the spawn need to be in an arena?
 SpawnPointMustBeInArena: true
 
-#Can players leave the arena with the leave command?
 CanLeaveArena: true
 
-#Can players walk and move around when they are in a round (useful with the CUSTOM map, for a walking/moving map)
-CanWalkAroundInARound: false
+TargetOne:
+  Enabled: true
+  Material: GREEN_WOOL
+  Points: 1
 
-#The name of the bow and arrow
-BowName: '&6Shooting Gallery Gun'
-ArrowName: '&6Shooting Gallery Bullet'
+TargetTwo:
+  Enabled: false
+  Material: BLUE_WOOL
+  Points: 2
+  
+TargetThree:
+  Enabled: true
+  Material: RED_WOOL
+  Points: 5
+
+CanWalkWhenInGame: false
+CanTeleportWhenInGame: false
+
+ShootingItem:
+  Material: BOW
+  Name: '&6Shooting Gallery Gun'
+  Lores:
+  - '&6Use this bow to shoot the wool!'
+  
+BulletItem:
+  Material: ARROW
+  Name: '&6Shooting Gallery Bullet'
+  Lores:
+  - '&6Use this bullet with your bow!'
