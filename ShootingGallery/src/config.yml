@@ -11,16 +11,19 @@ CanLeaveArena: true
 TargetOne:
   Enabled: true
   Material: GREEN_WOOL
+  Data: 0
   Points: 1
 
 TargetTwo:
   Enabled: false
   Material: BLUE_WOOL
+  Data: 0
   Points: 2
   
 TargetThree:
   Enabled: true
   Material: RED_WOOL
+  Data: 0
   Points: 5
 
 CanWalkWhenInGame: false
